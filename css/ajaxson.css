@@ -1,0 +1,18 @@
+.error-message {
+    color= red;
+    font-size: 12px;
+}
+.jumbotron {
+    text-align: center;
+    margin: 1%;
+    padding: 2%;
+}
+.text-muted {
+    text-align: right;
+
+}
+.center-div {
+    margin: 0 auto;
+    width: 100%;
+
+}

@@ -42,8 +42,8 @@ function fetchAndDisplayGif(event) {
             // jQuery passes us the `response` variable, a regular javascript object created from the JSON the server gave us
             console.log("we received a response!");
             console.log(response);
-            var image_url= response.results;
-            $('#gif').attr('src', 'image_url')//.show;
+            var image_url= response.data;//.image_url;
+            $('#gif').attr('src', 'image_url');//.show;
             // TODO
             // 1. set the source attribute of our image to the image_url of the GIF
             // 2. hide the feedback message and display the image
@@ -70,7 +70,8 @@ function fetchAndDisplayGif(event) {
                 $loading.hide();
             });
 }
-    var riddle = document.getElementBYId('captcha');
+
+    var riddle = document.getElementById('captcha');
     riddle.onsubmit = function(event) {
         event.preventDefault();
         clearError();
@@ -81,6 +82,14 @@ function fetchAndDisplayGif(event) {
         }
         else {
             submit.fetchAndDisplayGif;
+        }
+        function displayError(message) {
+            riddle.captcha = "";
+            document.querySelector('.error-message').innerHtml= message;
+        }
+        function clearError(message) {
+            riddle.captcha = "";
+            document.querySelector('.error-message').innerHtml = "";
         }
     }
 
