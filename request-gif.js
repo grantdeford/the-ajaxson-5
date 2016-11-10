@@ -22,13 +22,19 @@ function fetchAndDisplayGif(event) {
     // Because we will be making our own AJAX request, we dont need to send a normal request and we definitely don't want the page to refresh.
     event.preventDefault();
 
+        if ($('#captcha').val() !== "5") {
+            $('#feedback').text('NO GIFs for YOU!');
+            setGifLoadedStatus(false);
+
+        }
+        else {
     // get the user's input text from the DOM
     //var searchQuery = document.getElementById("#form-gif-request").value; // TODO should be e.g. "dance"
     var searchQuery = $("#form-gif-request input").val();
     // configure a few parameters to attach to our request
     var params = {
         api_key: "dc6zaTOxFJmzC",
-        tag : "jackson+5" + searchQuery,// TODO should be e.g. "jackson 5 dance"
+        tag : "jackson 5" + searchQuery,// TODO should be e.g. "jackson 5 dance"
     };
 
     // make an ajax request for a random GIF
@@ -42,8 +48,8 @@ function fetchAndDisplayGif(event) {
             // jQuery passes us the `response` variable, a regular javascript object created from the JSON the server gave us
             console.log("we received a response!");
             console.log(response);
-            var image_url= response.data;//.image_url;
-            $('#gif').attr('src', 'image_url');//.show;
+            var image_url= response.data.image_url;//.image_url;
+            $('#gif').attr('src', image_url).show;
             // TODO
             // 1. set the source attribute of our image to the image_url of the GIF
             // 2. hide the feedback message and display the image
@@ -58,10 +64,14 @@ function fetchAndDisplayGif(event) {
             setGifLoadedStatus(false);
         }
     });
-
+    $("#feedback").text('Loading..');
+    setGifLoadedStatus(false);
+};
     // TODO
     // give the user a "Loading..." message while they wait
-        var $loading = $('#loading').hide();
+
+
+        /**var $loading = $('#loading').hide();
         $(document)
             .ajaxStart(function (response) {
                 $loading.show();
@@ -69,9 +79,13 @@ function fetchAndDisplayGif(event) {
             .ajaxStop(function (response) {
                 $loading.hide();
             });
+            **/
+
+
 }
 
-    var riddle = document.getElementById('captcha');
+
+    /**var riddle = document.getElementById('captcha');
     riddle.onsubmit = function(event) {
         event.preventDefault();
         clearError();
